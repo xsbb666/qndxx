@@ -39,8 +39,8 @@ Bate0.0.1演示站：http://dywz2.xsbb.firadio.net
 #### 首页
 ![](https://raw.githubusercontent.com/xsbb666/qndxx/main/image/main.png)
 
-#### 手机版高仿
+#### 电脑版
 ![](https://github.com/xsbb666/qndxx/blob/main/image/pc2.png?raw=true)
 
-#### 电脑版高仿
+#### 手机版
 ![](https://github.com/xsbb666/qndxx/blob/main/image/mobile.png?raw=true)
