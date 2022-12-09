@@ -27,6 +27,8 @@ $length=$poste-$postb;
 $title=substr($html,$postb,$length);
 
 ?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
