@@ -17,19 +17,6 @@ else
     $html=explode('"',$posta)[0];
     if($html)
     echo str_ireplace($html,"../../qndxx.php?url=$url2" , $str2);
-    else
-    echo '<!DOCTYPE html>
-<html lang="zh-cn">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>电脑版 - 高仿青年大学习完成页</title>
-</head>
-<body>
-    <p>失败</p>
-</body>
-</html>';
 }
 
 //CURL模块

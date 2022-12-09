@@ -1,8 +1,8 @@
 <?php
 /*
 title qingniandaxuexi get data(青年大学习数据获取)
-2022/10/27 By:wuzhidecuo
-API用于获取青年大学习的（非所有）链接，非常耗流量，不过不用担心本程序会将数据存储到服务器做为缓存，当需要时可以使用（判断是否需要使用缓存，使用MD5效验）
+Uodate 2022/10/29
+text API用于获取青年大学习的（非所有）链接，缓存获取的数据，不能保证数据准确
 */
 
 $config=array( 
@@ -35,18 +35,7 @@ $data=curl("http://news.cyol.com/gb/channels/vrGlAKDl/index_$page.html");
 else
 exit('{"code":-1,"msg":"参数错误","data":null}');
 
-if($config["temp"]==0){
-$fp = fopen("data.json","r");
-$filetext=fread($fp, filesize("data.json"));
-$data2=json_decode($filetext,true);
-fclose($fp);
-if($data2["page".$page]==md5($data))
-{
-    $fp = fopen("$page.json","r");
-    $filetext2=fread($fp, filesize("$page.json"));
-    fclose($fp);
-    exit('{"code":1,"msg":"成功(来自缓存)","data":'.$filetext2.'}');
-}}
+
 
 $array["code"]=0;
 $array["msg"]="成功";
@@ -89,7 +78,14 @@ foreach(explode('<li>',$list) as $v)
     $length=$poste-$postb;
     $image=substr($v,$postb,$length);
     
-    if(strstr($url,"https://")||strstr($url,"http://")){
+    $path='../temp/'.md5(str_replace('images/pc.jpg', '',$url)).".json"; //缓存文件位置
+    if($config["temp"]==0&&file_exists($path)){
+        $fp=fopen($path, "r");
+        $filetext=fread($fp, filesize($path));
+        $array["data"][]=json_decode($filetext,true);
+        fclose($fp);
+    }
+    else if(strstr($url,"https://")||strstr($url,"http://")){
     $content=curl(str_replace('images/pc.jpg', '',$url));
     
     //获取标题
@@ -127,22 +123,17 @@ foreach(explode('<li>',$list) as $v)
         "author" => $author,
         "source" => $source,
         );
-    
+        
+    if($config["temp"]==0){//缓存数据
+    $fp = fopen($path, 'w');
+    fwrite($fp, json_encode(array("title" => $title,"title2" => $title2,"intro" => $intro,"time" => $time,"image" => $image,"url" => str_replace('images/pc.jpg', '',$url),"editor" => $editor,"author" => $author,"source" => $source,),JSON_UNESCAPED_UNICODE));
+    fclose($fp);
+    }
     }
 }
 
 if(!$array["data"])
 $array["data"]=[];
-else if($config["temp"]==0){//缓存数据
-$fp = fopen($page.'.json', 'w');
-fwrite($fp, json_encode($array["data"],JSON_UNESCAPED_UNICODE));
-fclose($fp);
-
-$fp = fopen('data.json', 'w');
-$data2["page".$page]=md5($data);
-fwrite($fp, json_encode($data2,JSON_UNESCAPED_UNICODE));
-fclose($fp);
-}
 
 echo json_encode($array,JSON_UNESCAPED_UNICODE);
 

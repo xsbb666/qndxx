@@ -1,3 +1,6 @@
+/* Name: qndxx index.js 3
+UpdateTime: 2022/10/31*/
+
 layui.use(function() {
 	var form = layui.form;
 
@@ -31,14 +34,17 @@ layui.use(function() {
 				},
 				dataType: 'json',
 				success: function(data) {
-					if(data.code == 0 || data.code == 1) {
+					if(data.code == 0) {
 						if(data.data.length != 0) {
 							for(var i in data.data) {
 								data2 = data2.concat(data.data[i]);
 								html = html + '<option value="' + size + '">' + data.data[i].title + '</option>';
 								size++;
 							}
-							document.getElementById("qdlist").innerHTML = html + '<option value="b">加载更多...</option>';
+							if(data.data.length >= 18)
+								document.getElementById("qdlist").innerHTML = html + '<option value="b">加载更多...</option>';
+							else
+								document.getElementById("qdlist").innerHTML = html;
 						} else
 							document.getElementById("qdlist").innerHTML = html;
 					} else
@@ -70,7 +76,7 @@ layui.use(function() {
 		data: {},
 		dataType: 'json',
 		success: function(data) {
-			if(data.code == 0 || data.code == 1) {
+			if(data.code == 0) {
 				if(data.length != 0) {
 					for(var i in data.data) {
 						data2 = data2.concat(data.data[i]);
@@ -78,7 +84,10 @@ layui.use(function() {
 						size++;
 					}
 				}
-				document.getElementById("qdlist").innerHTML = html + '<option value="b">加载更多...</option>';
+				if(data.data.length >= 18)
+					document.getElementById("qdlist").innerHTML = html + '<option value="b">加载更多...</option>';
+				else
+					document.getElementById("qdlist").innerHTML = html;
 			} else
 				document.getElementById("qdlist").innerHTML = html + '<option value="b" disabled>' + data.msg + '</option>';
 			form.render('select');
@@ -88,6 +97,8 @@ layui.use(function() {
 			document.getElementById("qdlist").innerHTML = '<option value="a">其他</option><option value="b" disabled>载入失败</option>';
 			form.render('select');
 		}
+		
+		
 	});
 
 	//监听提交
@@ -98,11 +109,11 @@ layui.use(function() {
 			shade: 0.8
 		});
 		if(data.field.ui == 0) {
-			spanedit(data.field.url, "qndxx.php")
+			spanedit(data.field.url, "qndxx.php");
 		} else if(data.field.ui == 1) {
-			spanedit(data.field.url, "bg.php")
-		}else if(data.field.ui == 2) {
-			spanedit(data.field.url, "bg2.php")
+			spanedit(data.field.url, "bg.php");
+		} else if(data.field.ui == 2) {
+			spanedit(data.field.url, "bg2.php");
 		} else {
 			layer.close(index);
 			layer.alert("你选择了一个未知页面", {
