@@ -33,3 +33,14 @@ Bate0.0.5演示站：http://us.qd.wdsjhskj.cn
 Bate0.0.4演示站：http://qd2.wdsjhskj.cn
 
 Bate0.0.1演示站：http://dywz2.xsbb.firadio.net
+
+### 效果
+
+#### 首页
+![](https://raw.githubusercontent.com/xsbb666/qndxx/main/image/main.png)
+
+#### 手机版高仿
+![](https://github.com/xsbb666/qndxx/blob/main/image/pc2.png?raw=true)
+
+#### 电脑版高仿
+![](https://github.com/xsbb666/qndxx/blob/main/image/mobile.png?raw=true)
