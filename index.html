@@ -13,17 +13,27 @@
 			<blockquote class="layui-elem-quote" style="margin-top: 30px;">
 				<div class="layui-text">
 					<ul>
-						<li>如果页面空白一般是链接输入有误</li>
 						<li>本页面为高仿页并非官方页，切勿混淆！</li>
-						<li>本程序免费且开源，程序版本：Bate 0.0.3</li>
+						<li>本程序免费且开源，程序版本：Bate 0.0.4 <a href="https://pan.baidu.com/s/1wpIOaNbtNAQI_SaZeF48-g?pwd=ush3">获取开源程序</a></li>
+						<li>列表并非所有青年大学习，本程序不支持过旧的青年大学习链接</li>
+						<li>如果页面空白一般是链接输入有误 可以尝试从<a href="https://h5.cyol.com/special/daxuexi/daxuexiall/m.html?t=1">青年大学习完整版合集</a>里复制链接</li>
 					</ul>
 				</div>
 			</blockquote>
 			<form class="layui-form" style="padding: 20px 20px 10px 20px;background-color: #fff;">
-				<div class="layui-form-item">
-					<label class="layui-form-label">链接</label>
+			    <div class="layui-form-item">
+					<label class="layui-form-label">选择链接</label>
 					<div class="layui-input-block">
-						<input type="text" name="url" required="" lay-verify="url" placeholder="请输入青年大学习链接" autocomplete="off" class="layui-input">
+						<select name="qdlist" lay-filter="qdlist" id="qdlist">
+							<option value="a">其他</option>
+							<option value="b" disabled>正在载入</option>
+						</select>
+					</div>
+				</div>
+				<div id="input" class="layui-form-item">
+					<label class="layui-form-label"></label>
+					<div class="layui-input-block">
+						<input type="text" name="url" id="urlinput"  lay-verify="url" placeholder="请输入青年大学习链接" autocomplete="off" class="layui-input">
 					</div>
 				</div>
 				<div class="layui-form-item">
@@ -31,7 +41,8 @@
 					<div class="layui-input-block">
 						<select name="ui" lay-filter="aihao">
 							<option value="0">手机版</option>
-							<option value="1">电脑版</option>
+							<option value="2">电脑版2</option>
+							<optgroup label="不推荐使用"><option value="1">电脑版</option></optgroup>
 						</select>
 					</div>
 				</div>
@@ -43,53 +54,10 @@
 			</form>
 		</div>
 	</div>
+<div>
+</div>
 <script type="text/javascript" src="layui/layui.js"></script>
-<script>
-layui.use('form', function(){
-  var form = layui.form;
-  
-  //监听提交
-  form.on('submit(*)', function(data){
-      var index = layer.msg('正在跳转，请稍候...', {
-          icon: 16,
-		  time: false,
-		   shade: 0.8
-      });
-      if(data.field.ui==0){
-          spanedit(data.field.url,"qndxx.php")
-      }
-      else if(data.field.ui==1){
-          spanedit(data.field.url,"bg.php")
-      }
-      else{
-        layer.close(index);
-		layer.alert("你选择了一个未知页面", {
-			icon: 2
-		});
-      }
-      return false;
-  });
-});
-
-function spanedit(link,url) 
-{
-    event.stopPropagation();
-    var params = new Array();
-    params['url'] = link;
-    var temp = document.createElement("form"); 
-    temp.action = url; 
-    temp.method = "post"; 
-    temp.style.display = "none"; 
-    for (var x in params)
-    {
-        var opt = document.createElement("input"); 
-        opt.name = x; 
-        opt.value = params[x];
-        temp.appendChild(opt); 
-    }
-    document.body.appendChild(temp); 
-    temp.submit(); return temp;
-}
-</script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 <?php
 $url=$_REQUEST["url"]; //获取传入的URL
+header('Content-Type:text/html;charset=UTF-8'); //设置HTML响应
 
 $z1=strpos($url, "/daxuexi/")+9; //截取id
 $str=substr($url,$z1);
