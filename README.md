@@ -11,7 +11,9 @@
 
 ### 使用方法
 电脑版：GET/POST: bg.php?url=青年大学习链接
+
 电脑版2：GET/POST: bg2.php?url=青年大学习链接
+
 手机版：GET/POST: qndxx.php?url=青年大学习链接
 
 ### Q&A
