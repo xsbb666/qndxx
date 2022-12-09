@@ -22,3 +22,14 @@
 Q：打开页面为空白
 
 A：一般为传入的链接有误或链接不支持
+
+### 演示站
+演示站不一定可用
+
+演示站：http://qd.wdsjhskj.cn
+
+Bate0.0.5演示站：http://us.qd.wdsjhskj.cn
+
+Bate0.0.4演示站：http://qd2.wdsjhskj.cn
+
+Bate0.0.1演示站：http://dywz2.xsbb.firadio.net
