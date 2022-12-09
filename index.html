@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+	<title>高仿青年大学习完成页</title>
+	<link rel="stylesheet" href="layui/css/layui.css" media="all">
+</head>
+<body>
+	<div class="layui-card">
+		<div class="layui-card-header">高仿青年大学习完成页</div>
+		<div class="layui-card-body">
+			<blockquote class="layui-elem-quote" style="margin-top: 30px;">
+				<div class="layui-text">
+					<ul>
+						<li>如果页面空白一般是链接输入有误</li>
+						<li>本页面为高仿页并非官方页，切勿混淆！</li>
+						<li>本程序免费且开源，程序版本：Bate 0.0.3</li>
+					</ul>
+				</div>
+			</blockquote>
+			<form class="layui-form" style="padding: 20px 20px 10px 20px;background-color: #fff;">
+				<div class="layui-form-item">
+					<label class="layui-form-label">链接</label>
+					<div class="layui-input-block">
+						<input type="text" name="url" required="" lay-verify="url" placeholder="请输入青年大学习链接" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label">选择页面</label>
+					<div class="layui-input-block">
+						<select name="ui" lay-filter="aihao">
+							<option value="0">手机版</option>
+							<option value="1">电脑版</option>
+						</select>
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<div class="layui-input-block">
+						<button class="layui-btn" lay-submit="" lay-filter="*">确定</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+<script type="text/javascript" src="layui/layui.js"></script>
+<script>
+layui.use('form', function(){
+  var form = layui.form;
+  
+  //监听提交
+  form.on('submit(*)', function(data){
+      var index = layer.msg('正在跳转，请稍候...', {
+          icon: 16,
+		  time: false,
+		   shade: 0.8
+      });
+      if(data.field.ui==0){
+          spanedit(data.field.url,"qndxx.php")
+      }
+      else if(data.field.ui==1){
+          spanedit(data.field.url,"bg.php")
+      }
+      else{
+        layer.close(index);
+		layer.alert("你选择了一个未知页面", {
+			icon: 2
+		});
+      }
+      return false;
+  });
+});
+
+function spanedit(link,url) 
+{
+    event.stopPropagation();
+    var params = new Array();
+    params['url'] = link;
+    var temp = document.createElement("form"); 
+    temp.action = url; 
+    temp.method = "post"; 
+    temp.style.display = "none"; 
+    for (var x in params)
+    {
+        var opt = document.createElement("input"); 
+        opt.name = x; 
+        opt.value = params[x];
+        temp.appendChild(opt); 
+    }
+    document.body.appendChild(temp); 
+    temp.submit(); return temp;
+}
+</script>
+</body>
+</html>

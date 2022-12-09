@@ -1,14 +1,19 @@
 ### 前言
 灵感来源于青年一键学习，本程序为高仿青年大学习的完成页面(可能存在瑕疵)
+本项目使用了[LayUi](https://layuion.com/)
 
 ### 部署
 安装PHP，推荐PHP版本7.0(或更高)
 
 ### 使用方法
-电脑版：GET: bg.php?url=青年大学习链接
-手机版：GET : qndxx.php?url=青年大学习链接
+电脑版：GET/POST: bg.php?url=青年大学习链接
+手机版：GET/POST: qndxx.php?url=青年大学习链接
 
 ### 更新
+2022.05.21 `bate0.0.3`
+1.支持POST请求
+2.添加HTML页面
+
 2022.05.12 `bate0.0.2`
 1.适配电脑版
 

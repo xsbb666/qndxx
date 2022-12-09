@@ -1,5 +1,5 @@
 <?php
-$url=$_GET["url"]; //获取传入的URL
+$url=$_REQUEST["url"]; //获取传入的URL
 
 $z1=strpos($url, "/daxuexi/")+9; //截取id
 $str=substr($url,$z1);
